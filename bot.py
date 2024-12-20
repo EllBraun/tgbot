@@ -1,17 +1,17 @@
 from telegram import Bot
+from telegram.ext import Application, CommandHandler
+import asyncio
 
-# Токен вашого бота
-BOT_TOKEN = "7907022002:AAESPATkMmcrOzHVVzhMMlEZKxitN8BD6J4"
+async def main():
+    # Ваша токен API бота
+    bot_token = "7907022002:AAESPATkMmcrOzHVVzhMMlEZKxitN8BD6J4"
+    application = Application.builder().token(bot_token).build()
 
-# ID користувача для тестування
-USER_ID = 389543078  # Замініть на ваш Telegram ID
+    # Додавання обробника команди /start
+    application.add_handler(CommandHandler("start", start))
 
-# Створюємо об'єкт бота
-bot = Bot(token=BOT_TOKEN)
+    # Запуск бота
+    await application.run_polling()
 
-# Надсилаємо тестове повідомлення з захистом контенту
-bot.send_message(
-    chat_id=USER_ID,
-    text="Це повідомлення захищене від пересилання!",
-    protect_content=True
-)
+if name == '__main__':
+    asyncio.run(main())
